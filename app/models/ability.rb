@@ -11,7 +11,7 @@ class Ability
       else
         can :manage, Case
         can :manage, User
-        can :read, :all
+        can :read, Doctor
       end
     end
     can :manage, Doctor
