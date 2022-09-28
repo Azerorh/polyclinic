@@ -24,8 +24,8 @@ ActiveAdmin.register Case do
     f.inputs do
       f.input :question
       f.input :answer
-      f.input :doctor_id, as: :select, collection: Doctor.all.collect {|doctor| [doctor.phone_number, doctor.id] }
-      f.input :user_id, as: :select, collection: User.all.collect {|user| [user.phone_number, user.id] }
+      f.input :doctor_id, as: :select, collection: Doctor.all.collect {|doctor| [doctor.fullname, doctor.id] }
+      f.input :user_id, as: :select, collection: User.all.collect {|user| [user.fullname, user.id] }
       f.input :status
     end
     f.actions
