@@ -1,0 +1,11 @@
+<div class="card" style="width: 400px;">
+  <% if @user.avatar.attached? %>
+    <%= cl_image_tag(@user.avatar.key, width: 400, crop: :scale) %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= @user.fullname %></h5>
+    <p class="card-text"><%= @user.phone_number %></p>
+    <p class="card-text"><%= @user.email %></p>
+    <%= link_to 'Change profile', edit_user_path(@user), class: 'btn btn-primary' %>
+  </div>
+</div>

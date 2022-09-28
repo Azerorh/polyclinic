@@ -1,0 +1,35 @@
+<h2>Log in as <%= resource_name %></h2>
+
+<div class="row">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: "false" }) do |f| %>
+      <div class="field">
+        <%= f.label :phone_number, class: 'form-label' %><br />
+        <%= f.phone_field :phone_number, autofocus: true, autocomplete: "tel", id: 'phone_field', class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password, class: 'form-label' %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "Log in", class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+</div>
+<div class="row">
+  <% if resource_name == :user %>
+    <%= link_to 'Or login as Doctor', new_doctor_session_path %>
+  <% else %>
+    <%= link_to 'Or login as User', new_user_session_path %>
+  <% end %>
+</div>
+
+<%= render "devise/shared/links" %>

@@ -1,0 +1,51 @@
+<% if user_signed_in? %>
+  <%= link_to 'New question', new_user_case_path(current_user.id) %>
+<% end %>
+
+<% if @cases.count > 0 %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Status</th>
+        <th scope="col">Avatar</th>
+        <th scope="col">Full name</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Question</th>
+        <th scope="col">Answer</th>
+        <% if doctor_signed_in? %>
+          <th scope="col">Reply</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+        <% @cases.each do |c| %>
+          <tr>
+            <td><%= c.id %></td>
+            <td><%= c.status ? 'Open' : 'Closed' %></td>
+            <td>
+              <% if c.user.avatar.attached? %>
+                <%= cl_image_tag(c.user.avatar.key, height: 100, crop: :scale, :radius => 25) %>
+              <% end %>
+            </td>
+            <td><%= c.user.fullname %></td>
+            <td><%= c.user.phone_number %> </td>
+            <td><%= c.user.email %> </td>
+            <td><%= c.question %> </td>
+            <td><%= c.answer %> </td>
+            <% if doctor_signed_in? %>
+              <td><%= link_to 'Answer', edit_doctor_case_path(c.doctor.id, c.id), class: 'btn btn-primary' %> </td>
+            <% end %>
+          </tr>
+        <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <% if user_signed_in? %>
+    <p>No questions</p>
+  <% elsif doctor_signed_in? %>
+    <p>No open cases</p>
+  <% end %>
+<% end %>
+

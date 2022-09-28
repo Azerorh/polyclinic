@@ -1,0 +1,31 @@
+<% @users.each do |user| %>
+  <%= user.phone_number %><br/>
+  <%= user.email %><br/>
+<% end %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Avatar</th>
+      <th scope="col">Full name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td>
+            <% if user.avatar.attached? %>
+              <%= cl_image_tag(user.avatar.key, height: 200, crop: :scale) %>
+            <% end %>
+          </td>
+          <td><%= user.fullname %></td>
+          <td><%= user.phone_number %> </td>
+          <td><%= user.email  %> </td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>

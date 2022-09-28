@@ -1,0 +1,11 @@
+<div class="card" style="width: 400px;">
+  <% if @doctor.avatar.attached? %>
+    <%= cl_image_tag(@doctor.avatar.key, width: 400, crop: :scale) %>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= @doctor.fullname %></h5>
+    <p class="card-text"><%= @doctor.phone_number %></p>
+    <p class="card-text"><%= @doctor.email %></p>
+    <%= link_to 'Change profile', edit_doctor_path(@doctor), class: 'btn btn-primary' %>
+  </div>
+</div>

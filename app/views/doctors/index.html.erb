@@ -1,0 +1,33 @@
+Sort by: <%= link_to 'All', doctors_path, class: 'link-primary' %> | 
+<% @categories.each do |category| %>
+  <%= link_to category.name, doctors_by_category_path(category.id), class: 'link-primary' %> | 
+<% end %>
+<br/>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Avatar</th>
+      <th scope="col">Full name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+      <th scope="col">Category</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @doctors.each do |doctor| %>
+        <tr>
+          <td><%= doctor.id %></td>
+          <td>
+            <% if doctor.avatar.attached? %>
+              <%= cl_image_tag(doctor.avatar.key, height: 100, crop: :scale, :radius => 25) %>
+            <% end %>
+          </td>
+          <td><%= doctor.fullname %></td>
+          <td><%= doctor.phone_number %> </td>
+          <td><%= doctor.email  %> </td>
+          <td><%= doctor.category ? doctor.category.name : 'None' %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>

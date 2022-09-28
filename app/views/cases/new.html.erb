@@ -1,0 +1,12 @@
+<%= form_for [@user, @case] do |f| %>
+  <div class="mb-3">
+    <%= f.label :question, class: 'form-label' %>
+    <%= f.text_area :question, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :doctor_id, class: 'form-label' %>
+    <%= f.select(:doctor_id, options_for_select(@doctors), {}, { :class => 'form-select' }) %>
+  </div>
+  <%= f.hidden_field :status, value: true %>
+  <%= f.submit 'Submit', class: 'btn btn-primary' %>
+<% end %>
